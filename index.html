@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="idTitulo">Felipe Zanoni da Rosa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+    <script>
+        let titulos = [];
+        let indicetitulos = 0;
+        titulos = [
+          "Trabalho de Algoritmos e Programação",
+          "Felipe Zanoni da Rosa",
+        ];
+  
+        function atualizarTitulo() {
+          document.getElementById("idTitulo").innerHTML = titulos[indicetitulos];
+          indicetitulos = (indicetitulos + 1) % titulos.length;
+        }
+  
+        setInterval(atualizarTitulo, 2000);
+        function abriu(){
+            let inputElement = document.getElementById("idValorParaaritimeticaPonderadaPeso");
+            let brtirarElement = document.getElementById("brtirar");
+            inputElement.style.display = "none";
+            brtirarElement.style.display = "none";
+        }
+
+        function alterarEstilo() {
+            
+            let selectElement = document.getElementById("idSelectPonderada");
+            let inputElement = document.getElementById("idValorParaaritimeticaPonderadaPeso");
+            let brtirarElement = document.getElementById("brtirar");
+
+            if (selectElement.value == "indice") {
+
+                inputElement.style.display = "none";
+                brtirarElement.style.display = "none";
+            } else if (selectElement.value == "outraopcao") {
+                inputElement.style.display = "block";
+                brtirarElement.style.display = "block";
+            }
+        }
+    </script>
+    <style>
+
+
+
+        @media screen and (max-width: 768px) {
+            .funcoesclass {
+                width: 90%;
+                margin: 10px;
+                padding: 10px;
+            }
+        
+            button {
+                width: 100%;
+            }
+        
+            input {
+                width: 100%;
+            }
+        
+            .vetor {
+                margin: 10px;
+                padding: 10px;
+            }
+        
+            select {
+                width: 100%;
+            }
+        
+            h1 {
+                font-size: 24px;
+            }
+        
+            p {
+                font-size: 18px;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .funcoesclass {
+                width: 50%;
+                margin: 20px;
+                padding: 20px;
+            }
+        
+            button {
+                width: 200px;
+            }
+        
+            input {
+                width: 80%;
+            }
+        
+            .vetor {
+                margin: 20px;
+                padding: 20px;
+            }
+        
+            select {
+                width: 50%;
+            }
+            h1 {
+                font-size: 36px;
+            }
+        
+            p {
+                font-size: 24px;
+            }
+        }
+        *{
+            font-family: "Josefin Sans", san;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #121212;
+        }
+        .funcoesclass{
+            background-color: #778899;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px;            
+            border: 2px solid #000;
+        }
+        button {
+            width: 200px;
+            border-radius: 15px;
+            transition: transform 0.2s; /* Adiciona uma transição suave */
+            cursor: pointer;
+        }
+        
+        button:hover {
+            transform: scale(1.1); /* Aumenta em 10% quando o mouse está sobre o botão */
+        }
+        
+        input{
+            border-radius: 5px;
+            width: 30%;
+            transition: transform 0.2s;
+        }
+        input:hover{
+            transform: scale(1.1);
+        }
+        .vetor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #31383f;
+            border: 2px solid #fff;
+            border-radius: 30px;
+        }
+        .vetor p{
+            color: #fff;
+        }
+        select{
+            border-radius: 5px;
+        }
+        
+    </style>
+    <script>
+        function limpar() {
+            vetor = [];
+            texto1 = []
+            texto2= []
+            texto3 = []
+            texto4 = []
+            texto3Padrao = [];
+            document.getElementById('idVerInteiroAritimetica').innerHTML = '';
+            document.getElementById('idVerInteiroAritimeticaPonderada').innerHTML= '';
+            document.getElementById('idVerInteiroFim').innerHTML = '';
+            document.getElementById('idVerInteiroPosicaoRemover').innerHTML = '';
+            document.getElementById('idVerInteiroPosicao').innerHTML = '';
+            document.getElementById('vermostrarposicao').innerHTML='';
+            document.getElementById('idResultado').innerHTML='';
+            document.getElementById('Texto1Ver').innerHTML='';
+            document.getElementById('Texto2Ver').innerHTML='';
+            document.getElementById('Texto3Ver').innerHTML='';
+            document.getElementById('Texto4Ver').innerHTML='';
+
+        }
+    </script>
+</head>
+<body onload="abriu()">
+    <div class="vetor">
+        <script>
+            let vetor = [];
+
+            function adicionarInteiroFim() {
+                let valor = document.getElementById('idInteiroFim').value;
+                vetor.push(parseInt(valor));
+                document.getElementById('idInteiroFim').value = '';
+                document.getElementById('idInteiroFim').focus();
+                document.getElementById('idVerInteiroFim').innerHTML = `<h3>Vetor: ${vetor}</h3>`;
+            }
+    
+            function adicionarInteiroPosicao() {
+                let valor = document.getElementById('idInteiroFimPosicao').value;
+                let posicao = parseInt(document.getElementById('idInteiroPosicao').value);
+            
+                if (posicao <= vetor.length) {
+                    let tempArray = [];
+            
+                    while (vetor.length > posicao) {
+                        tempArray.push(vetor.pop());
+                    }
+            
+                    vetor.push(parseInt(valor));
+            
+                    while (tempArray.length > 0) {
+                        vetor.push(tempArray.pop());
+                    }
+                }
+            
+                document.getElementById('idInteiroFimPosicao').value = '';
+                document.getElementById('idInteiroFimPosicao').focus()
+                document.getElementById('idInteiroPosicao').value = '';
+            
+                document.getElementById('idVerInteiroPosicao').textContent = `Vetor: [${vetor}]`;
+            }
+    
+            function removerInteiro() {
+                let posicao = parseInt(document.getElementById('idInteiroPosicaoRemover').value);
+    
+                if (posicao >= 0 && posicao < vetor.length) {
+                    for (let i = posicao; i < vetor.length - 1; i++) {
+                        vetor[i] = vetor[i + 1];
+                    }
+                    vetor.pop();
+                    document.getElementById('idInteiroPosicaoRemover').value = '';
+                    document.getElementById('idVerInteiroPosicaoRemover').textContent = `Vetor: [${vetor}]`;
+                } else {
+                    alert('A posição escolhida não existe no vetor.');
+                }
+            }
+    
+            function adicionarValorParaRemover() {
+                let valor = document.getElementById('idValorParaRemover').value;
+                vetor.push(parseInt(valor));
+                document.getElementById('idVerInteiroPosicaoRemover').textContent = `Vetor: [${vetor}]`;
+                document.getElementById('idValorParaRemover').value = '';
+                document.getElementById('idValorParaRemover').focus() ;
+            }
+            function adicionarValorParaaritimetica() {
+                let valor = document.getElementById('idValorParaaritimetica').value;
+                vetor.push(parseInt(valor));
+                document.getElementById('idVerInteiroAritimetica').textContent = `Vetor: [${vetor}]`;
+                document.getElementById('idValorParaaritimetica').value = '';
+                document.getElementById('idValorParaaritimetica').focus()
+            }
+    
+            function CalcularVlorParaaritimetica() {
+                let resultado = 0;
+                for (let i = 0; i < vetor.length; i++) {
+                    resultado += vetor[i];
+                }
+                resultado = resultado / vetor.length;
+                document.getElementById('idVerInteiroAritimetica').innerHTML = `Vetor: [${vetor}]<br>Tamanho do vetor: ${vetor.length}<br>Média aritmética: ${resultado}`;
+            }
+    
+            function adicionarValorParaaritimeticaPonderada(){
+                let valor = document.getElementById('idValorParaaritimeticaPonderada').value;
+                let peso = document.getElementById('idValorParaaritimeticaPonderadaPeso').value;
+    
+                if(peso == '' )
+                    peso = vetor.length
+                
+                
+            
+                vetor.push([parseFloat(valor), parseFloat(peso)]);
+            
+                document.getElementById('idValorParaaritimeticaPonderada').value = '';
+                document.getElementById('idValorParaaritimeticaPonderadaPeso').value = '';
+                document.getElementById('idValorParaaritimeticaPonderada').focus();
+                document.getElementById('idVerInteiroAritimeticaPonderada').textContent = `Vetor: ${JSON.stringify(vetor)}`;
+            }
+            function CalcularVlorParaaritimeticaPonderada(){
+                let somaProdutos = 0;
+                let somaPesos = 0;
+    
+                for (let i = 0; i < vetor.length; i++) {
+                    let numero = vetor[i][0];
+                    let peso = vetor[i][1];
+                
+                    somaProdutos += numero * peso;
+                    somaPesos += peso;
+                }
+    
+                let mediaPonderada = somaProdutos / somaPesos;
+                document.getElementById('idVerInteiroAritimeticaPonderada').innerHTML = `Vetor:${vetor}<br>Média ponderada:${mediaPonderada} `
+            }
+            function adicionarparamostrar(){
+                vetor.push(document.getElementById('idAdiconarParaMostrar').value)
+                document.getElementById('idAdiconarParaMostrar').value=''
+                ocument.getElementById('idAdiconarParaMostrar').focus()
+                document.getElementById('vermostrarposicao').textContent=`Vetor:[${vetor}]`
+            }
+            function mostrarposicao(){
+                posicao=document.getElementById('idAdiconarParaMostrarPosicao').value
+                if(posicao > vetor.length){
+                    alert('Posição '+posicao+' Invalida')
+                }
+                document.getElementById('vermostrarposicao').innerHTML=`Vetor:[${vetor}] <br> Tamanho do vetor:${vetor.length}<br> Posicao escolhida:${posicao} <br> Elemento:${vetor[posicao]}`
+            }
+            function calcularPorcentagem() {
+                // Obtenha os valores de 'a' e 'b' do HTML
+                const a = parseInt(document.getElementById('a').value);
+                const b = parseInt(document.getElementById('b').value);
+                let i=0
+                let somavalores = Number();
+                let somavaloresn = Number();
+    
+                if (b < a) {
+                    for (i = b; i != a; i++) {
+                        somavalores = somavalores + vetor[i];
+    
+                    }
+                } else if (a < b) {
+                    for (i = a; i != b; i++) {
+                        somavalores =  somavalores + vetor[i];
+    
+                    }
+                } else {
+                    quaivalores.push(a);
+                    somavalores =  somavalores + parseInt(vetor[a]);
+                }
+            
+                for (i = 0; i < vetor.length; i++) {
+                    somavaloresn += vetor[i];
+                }
+            alert(somavalores+'     '+ somavaloresn)
+                // Calcule a porcentagem (supondo que vetor, indiceMinimo e indiceMaximo já estejam definidos em algum lugar)
+                const porcentagem = (somavalores * 100) / somavaloresn;
+            
+                document.getElementById('idResultado').innerHTML = `Porcentagem: ${porcentagem.toFixed(2)}%`;
+                document.getElementById('a').value = '';
+                document.getElementById('b').value = '';
+            }
+    
+            function calcularPorcentagemadicionar(){
+                vetor.push( parseInt(document.getElementById('adicionarporcentagem').value))
+                document.getElementById('adicionarporcentagem').value=''
+                document.getElementById('adicionarporcentagem').focus()
+                document.getElementById('idResultado').textContent=`Vetor:[${vetor}]`
+            }
+        </script>
+        <script>
+            let texto1 = new Array()
+            function addTexto1(){
+                texto1.push(String(document.getElementById('addTexto1Input').value))
+                document.getElementById('Texto1Ver').textContent = 'Vetor:'+JSON.stringify(texto1)
+                document.getElementById('addTexto1Input').value=''
+                document.getElementById('addTexto1Input').focus()
+            }
+            let texto2=[]
+            function addTexto2(){
+                texto2.push(String(document.getElementById('addTexto2Input').value))
+                document.getElementById('Texto2Ver').textContent = 'Vetor:'+JSON.stringify(texto2)
+                document.getElementById('addTexto2Input').value=''
+                document.getElementById('addTexto2Input').focus()
+            }
+            let texto2ver=[]
+            function verTexto2() {
+                const textoBusca = document.getElementById('VerTexto2Input').value.toLowerCase();
+                const resultados = [];
+            
+                for (let i = 0; i < texto2.length; i++) {
+                    const elemento = texto2[i].toLowerCase();
+                    if (elemento.includes(textoBusca)) {
+                        resultados.push(texto2[i]);
+                    }
+                }
+                if (resultados.length > 0) {
+                    document.getElementById('Texto2Ver').innerHTML = 'Vetor:'+JSON.stringify(texto2) + '<br>'+'Resultados encontrados: ' + resultados.join(', ');
+                } else {
+                    document.getElementById('Texto2Ver').innerHTML = 'Vetor:'+JSON.stringify(texto2) + '<br>'+'Nenhum resultado encontrado.';
+                }
+            }
+            let texto3 = [];
+            let texto3Padrao = [];
+    
+            function addTexto3() {
+                const texto = document.getElementById("addTexto3Input").value;
+                texto3.push(texto);
+                texto3Padrao.push(texto);
+                document.getElementById("Texto3Ver").textContent = 'Vetor: ' + JSON.stringify(texto3);
+                document.getElementById("addTexto3Input").value = "";
+                document.getElementById("addTexto3Input").focus();
+            }
+    
+            function OrdenarTexto3() {
+                const selecionado = document.getElementById("selecionarordenar").value;
+    
+                if (selecionado === "alfabetica") {
+                    ordenarAlfabeticamente();
+                } else if (selecionado === "quantidade") {
+                    ordenarPorQuantidadeCaracteres();
+                } else if (selecionado === "quantidade_invertida") {
+                    ordenarPorQuantidadeCaracteresInvertida();
+                } else if (selecionado === "alfabetica_invertida") {
+                    ordenarAlfabeticamenteInvertida();
+                } else if (selecionado === "inverter") {
+                    inverterOrdem();
+                } else if (selecionado === "padrao") {
+                    texto3 = [...texto3Padrao];
+                }
+    
+                exibirTexto3();
+            }
+    
+    
+            function exibirTexto3() {
+                const textoDiv3 = document.getElementById("Texto3Ver");
+                textoDiv3.textContent = 'Vetor: ' + JSON.stringify(texto3);
+            }
+    
+            function ordenarAlfabeticamente() {
+                for (let i = 0; i < texto3.length - 1; i++) {
+                    for (let j = i + 1; j < texto3.length; j++) {
+                        if (texto3[i] > texto3[j]) {
+                            const temp = texto3[i];
+                            texto3[i] = texto3[j];
+                            texto3[j] = temp;
+                        }
+                    }
+                }
+            }
+    
+            function ordenarPorQuantidadeCaracteres() {
+                for (let i = 1; i < texto3.length; i++) {
+                    const key = texto3[i];
+                    let j = i - 1;
+                    while (j >= 0 && texto3[j].length > key.length) {
+                        texto3[j + 1] = texto3[j];
+                        j--;
+                    }
+                    texto3[j + 1] = key;
+                }
+            }
+    
+            function ordenarPorQuantidadeCaracteresInvertida() {
+                for (let i = 1; i < texto3.length; i++) {
+                    const key = texto3[i];
+                    let j = i - 1;
+                    while (j >= 0 && texto3[j].length < key.length) {
+                        texto3[j + 1] = texto3[j];
+                        j--;
+                    }
+                    texto3[j + 1] = key;
+                }
+            }
+    
+            function ordenarAlfabeticamenteInvertida() {
+                for (let i = 0; i < texto3.length - 1; i++) {
+                    for (let j = i + 1; j < texto3.length; j++) {
+                        if (texto3[i] < texto3[j]) {
+                            const temp = texto3[i];
+                            texto3[i] = texto3[j];
+                            texto3[j] = temp;
+                        }
+                    }
+                }
+            }
+    
+            function inverterOrdem() {
+                const reversedArray = [];
+                for (let i = texto3.length - 1; i >= 0; i--) {
+                    reversedArray.push(texto3[i]);
+                }
+                texto3 = reversedArray;
+            }
+            function mudoul1p1(valurp1l1){
+                if(valurp1l1 == "palavras"){
+                    document.getElementById('L1').style.display = "none"
+                    document.getElementById('L2').style.display = "none"
+                    document.getElementById('P1').style.display = "block"
+                    document.getElementById('P2').style.display = "block"
+                }else if(valurp1l1 == "letras"){
+                    document.getElementById('L1').style.display = "block"
+                    document.getElementById('L2').style.display = "block"
+                    document.getElementById('P1').style.display = "none"
+                    document.getElementById('P2').style.display = "none"
+                }
+            }
+            let texto4 = []
+            function addTexto4(){
+                texto4.push(document.getElementById('addTexto4Input').value)
+                document.getElementById('addTexto4Input').value=''
+                document.getElementById('addTexto4Input').focus()
+                document.getElementById('Texto4Ver').textContent= 'Vetor:'+JSON.stringify(texto4)
+            }
+            function substituirTexto(){
+                let L1, L2, P1, P2, i
+                let posicao = document.getElementById('addTexto4InputPosicao').value
+                if(document.getElementById('substituirOpcao').value=='letras'){
+                    L1 = document.getElementById('L1').value
+                    L2 =document.getElementById('L2').value
+                    substituirLetrasNaPosicao(posicao, L1, L2);
+                }else if(document.getElementById('substituirOpcao').value == 'palavras'){
+                    P1 = document.getElementById('P1').value
+                    P2 = document.getElementById('P2').value
+                    substituirPalavrasNaPosicao(posicao, P1, P2)
+                }
+            }
+            function substituirPalavrasNaPosicao(posicao, P1, P2) { 
+                if (posicao >= 0 && posicao < texto4.length) {
+                if(texto4[posicao]==P1){
+                    texto4[posicao]=P2
+                    document.getElementById('Texto4Ver').textContent = 'Vetor:' + JSON.stringify(texto4);
+                }else{
+                    alert('ERRO')
+                }
+                } else {
+                  alert("Posição inválida!");
+                }
+              }
+            function substituirLetrasNaPosicao(posicao, l1, l2) {
+                if (posicao >= 0 && posicao < texto4.length) {
+                  let nome = texto4[posicao];
+                  let novoNome = ""; 
+                  for (let i = 0; i < nome.length; i++) {
+                    if (nome[i] === l1) {
+                      novoNome += l2;
+                    } else {
+                      novoNome += nome[i];
+                    }
+                  }
+                  texto4[posicao] = novoNome;
+                  document.getElementById('Texto4Ver').textContent = 'Vetor:' + JSON.stringify(texto4);
+                } else {
+                  alert("Posição inválida!");
+                }
+              }
+
+
+
+        </script>
+        <h1>
+            <p>
+                VETOR INTEIROS
+            </p>
+        </h1>
+        <div class="funcoesclass">
+            <h1>Incluir um elemento no final do vetor</h1>
+            <input type="number" id="idInteiroFim" placeholder="Digite um número inteiro" required>
+            <br><br>
+            <button type="button" onclick="adicionarInteiroFim()">Adicionar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idVerInteiroFim"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Incluir um elemento em qualquer posição válida do vetor</h1>
+            <input type="number" id="idInteiroFimPosicao" placeholder="Digite um número inteiro" required>
+            <br>
+            <input type="number" id="idInteiroPosicao" placeholder="Digite a posição">
+            <br><br>
+            <button type="button" onclick="adicionarInteiroPosicao()">Adicionar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idVerInteiroPosicao"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Remover um elemento em qualquer posição válida do vetor</h1>
+            <input type="number" id="idValorParaRemover" placeholder="Digite um número inteiro" required>
+            <br>
+            <input type="number" id="idInteiroPosicaoRemover" placeholder="Digite a posição que quer remover">
+            <br><br>
+            <button type="button" onclick="adicionarValorParaRemover()">Adicionar Valor</button>
+            <br>
+            <button type="button" onclick="removerInteiro()">Remover</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idVerInteiroPosicaoRemover"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Média aritmética do vetor</h1>
+            <input type="number" id="idValorParaaritimetica" placeholder="Digite um número inteiro" required>
+            <br><br>
+            <button type="button" onclick="adicionarValorParaaritimetica()">Adicionar Valor</button>
+            <br>
+            <button type="button" onclick="CalcularVlorParaaritimetica()">Calcular média aritmética</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idVerInteiroAritimetica"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Média aritmética do vetor</h1>
+            <input type="number" id="idValorParaaritimeticaPonderada" placeholder="Digite um número inteiro" required>
+            <br id="brtirar">
+            <input type="number" id="idValorParaaritimeticaPonderadaPeso" placeholder="Digite o peso" required>
+            <br><br>
+            <button type="button" onclick="adicionarValorParaaritimeticaPonderada()">Adicionar Valor</button>
+            <br>
+            <button type="button" onclick="CalcularVlorParaaritimeticaPonderada()">Calcular média aritmética ponderada</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idVerInteiroAritimeticaPonderada"></div>
+            <select id="idSelectPonderada" onchange="alterarEstilo()">
+                <option value="indice">Peso == índice</option>
+                <option value="outraopcao">Peso != índice</option>
+            </select>
+        </div>
+        <div class="funcoesclass">
+            <h1>Mostrar os elementos do vetor de uma posição</h1>
+            <input type="number" id="idAdiconarParaMostrar" placeholder="Digite um número inteiro" required>
+            <br>
+            <input type="number" id="idAdiconarParaMostrarPosicao" placeholder="Digite a posição" required>
+            <br><br>
+            <button type="button" onclick="adicionarparamostrar()">Adicionar Valor</button>
+            <br>
+            <button type="button" onclick="mostrarposicao()">Mostrar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="vermostrarposicao"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Mostrar a porcentagem de elementos do vetor dentro do intervalo</h1>
+            <input type="number" id="adicionarporcentagem" placeholder="Digite um número inteiro" required>
+            <br>
+            <input type="number" id="a" placeholder="Digite a posição 'a'" required>
+            <br>
+            <input type="number" id="b" placeholder="Digite a posição 'b'" required>
+            <br><br>
+            <button type="button" onclick="calcularPorcentagemadicionar()">Adicionar Valor</button>
+            <br>
+            <button type="button" onclick="calcularPorcentagem()">Calcular porcentagem</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br>
+            <br>
+            <div id="idResultado"></div>
+        </div>
+    </div>
+    <br><br><br><br>
+    <div class="vetor">
+        <h1>
+            <p>
+                VETOR STRINGS
+            </p>
+        </h1>
+        <div class="funcoesclass">
+            <h1>
+                Adicionar strings em um vetor
+            </h1>
+            <input type="text" id="addTexto1Input" placeholder="Digiete algo">
+            <br><br>
+            <button type="button" onclick="addTexto1()">Adiconar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br><br>
+            <div id="Texto1Ver"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>
+                Mostrar partes de vetores
+            </h1>
+            <input type="text" id="addTexto2Input" placeholder="Digiete algo">
+            <br>
+            <input type="text" id="VerTexto2Input" placeholder="Digiete para busar">
+            <br><br>
+            <button type="button" onclick="addTexto2()">Adiconar</button>
+            <br>
+            <button type="button" onclick="verTexto2()">Buscar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br><br>
+            <div id="Texto2Ver"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Ordenar vetor</h1>
+            <input type="text" id="addTexto3Input" placeholder="Digite algo">
+            <br>
+            <button type="button" onclick="addTexto3()">Adicionar</button>
+            <br>
+            <select id="selecionarordenar">
+                <option value="padrao">Padrão</option>
+                <option value="alfabetica">Ordem Alfabética</option>
+                <option value="quantidade">Quantidade de Caracteres</option>
+                <option value="quantidade_invertida">Quantidade de Caracteres Invertida</option>
+                <option value="alfabetica_invertida">Ordem Alfabética Invertida</option>
+                <option value="inverter">Inverter Ordem</option>
+            </select>
+            <br><br>
+            <button type="button" onclick="OrdenarTexto3()">Ordenar</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br><br>
+            <div id="Texto3Ver"></div>
+        </div>
+        <div class="funcoesclass">
+            <h1>Subistituir letras ou palavras vetor</h1>
+            <input type="text" id="addTexto4Input" placeholder="Digite algo">
+            <br>
+            <input type="number" id="addTexto4InputPosicao" placeholder="Digite uma posição">
+            <br>
+            <select id="substituirOpcao" onchange="mudoul1p1(value)">
+                <option value="letras">Substituir Letras</option>
+                <option value="palavras">Substituir Palavras</option>
+            </select>
+            <br>
+            <input type="text" id="L1"  placeholder="Digite a letra l1" style="display:block;">
+            <input type="text" id="P1" placeholder="Digite a palavra P1" style="display:none;">
+            <br>
+            <input type="text" id="P2" placeholder="Digite a palavra P2" style="display:none;">
+            <input type="text" id="L2" placeholder="Digite a letra l2" style="display:block;">
+            <br>
+            <button type="button" onclick="addTexto4()">Adicionar</button>
+            <br>
+            <button type="button" onclick="substituirTexto()">Substituir</button>
+            <br>
+            <button type="button" onclick="limpar()">Limpar</button>
+            <br><br>
+            <div id="Texto4Ver"></div>
+        </div>
+        </div>
+        <a href="https://github.com/fezarosa-dev/promperotrabalho1">Codigo da pagina</a>
+</body>
+</html>
