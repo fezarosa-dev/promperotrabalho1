@@ -297,7 +297,6 @@ HTML (`evento_dom.html`):
 </html>
 ```
 
-Cada exemplo demonstra um conceito ou evento específico em JavaScript e pode ser colocado em arquivos HTML separados para testar e entender melhor cada conceito. Basta copiar o código em arquivos HTML separados e abrir no seu navegador para ver os resultados.
 
 
 
