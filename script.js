@@ -1,57 +1,3 @@
-let titulos = [];
-let indicetitulos = 0;
-titulos = [
-  "Trabalho de Algoritmos e Programação",
-  "Felipe Zanoni da Rosa",
-];
-
-function atualizarTitulo() {
-  document.getElementById("idTitulo").innerHTML = titulos[indicetitulos];
-  indicetitulos = (indicetitulos + 1) % titulos.length;
-}
-
-setInterval(atualizarTitulo, 2000);
-function abriu(){
-    let inputElement = document.getElementById("idValorParaaritimeticaPonderadaPeso");
-    let brtirarElement = document.getElementById("brtirar");
-    inputElement.style.display = "none";
-    brtirarElement.style.display = "none";
-}
-
-function alterarEstilo() {
-    
-    let selectElement = document.getElementById("idSelectPonderada");
-    let inputElement = document.getElementById("idValorParaaritimeticaPonderadaPeso");
-    let brtirarElement = document.getElementById("brtirar");
-
-    if (selectElement.value == "indice") {
-
-        inputElement.style.display = "none";
-        brtirarElement.style.display = "none";
-    } else if (selectElement.value == "outraopcao") {
-        inputElement.style.display = "block";
-        brtirarElement.style.display = "block";
-    }
-}        function limpar() {
-    vetor = [];
-    texto1 = []
-    texto2= []
-    texto3 = []
-    texto4 = []
-    texto3Padrao = [];
-    document.getElementById('idVerInteiroAritimetica').innerHTML = '';
-    document.getElementById('idVerInteiroAritimeticaPonderada').innerHTML= '';
-    document.getElementById('idVerInteiroFim').innerHTML = '';
-    document.getElementById('idVerInteiroPosicaoRemover').innerHTML = '';
-    document.getElementById('idVerInteiroPosicao').innerHTML = '';
-    document.getElementById('vermostrarposicao').innerHTML='';
-    document.getElementById('idResultado').innerHTML='';
-    document.getElementById('Texto1Ver').innerHTML='';
-    document.getElementById('Texto2Ver').innerHTML='';
-    document.getElementById('Texto3Ver').innerHTML='';
-    document.getElementById('Texto4Ver').innerHTML='';
-
-}
 let vetor = [];
 
 function adicionarInteiroFim() {
@@ -132,8 +78,8 @@ function adicionarValorParaaritimeticaPonderada(){
 
     if(peso == '' )
         peso = vetor.length
-    
-    
+
+
 
     vetor.push([parseFloat(valor), parseFloat(peso)]);
 
@@ -149,7 +95,7 @@ function CalcularVlorParaaritimeticaPonderada(){
     for (let i = 0; i < vetor.length; i++) {
         let numero = vetor[i][0];
         let peso = vetor[i][1];
-    
+
         somaProdutos += numero * peso;
         somaPesos += peso;
     }
@@ -368,7 +314,7 @@ function substituirTexto(){
         substituirPalavrasNaPosicao(posicao, P1, P2)
     }
 }
-function substituirPalavrasNaPosicao(posicao, P1, P2) { 
+function substituirPalavrasNaPosicao(posicao, P1, P2) {
     if (posicao >= 0 && posicao < texto4.length) {
     if(texto4[posicao]==P1){
         texto4[posicao]=P2
@@ -383,7 +329,7 @@ function substituirPalavrasNaPosicao(posicao, P1, P2) {
 function substituirLetrasNaPosicao(posicao, l1, l2) {
     if (posicao >= 0 && posicao < texto4.length) {
       let nome = texto4[posicao];
-      let novoNome = ""; 
+      let novoNome = "";
       for (let i = 0; i < nome.length; i++) {
         if (nome[i] === l1) {
           novoNome += l2;
@@ -397,4 +343,23 @@ function substituirLetrasNaPosicao(posicao, l1, l2) {
       alert("Posição inválida!");
     }
   }
+  function limpar() {
+    vetor = [];
+    texto1 = []
+    texto2= []
+    texto3 = []
+    texto4 = []
+    texto3Padrao = [];
+    document.getElementById('idVerInteiroAritimetica').innerHTML = '';
+    document.getElementById('idVerInteiroAritimeticaPonderada').innerHTML= '';
+    document.getElementById('idVerInteiroFim').innerHTML = '';
+    document.getElementById('idVerInteiroPosicaoRemover').innerHTML = '';
+    document.getElementById('idVerInteiroPosicao').innerHTML = '';
+    document.getElementById('vermostrarposicao').innerHTML='';
+    document.getElementById('idResultado').innerHTML='';
+    document.getElementById('Texto1Ver').innerHTML='';
+    document.getElementById('Texto2Ver').innerHTML='';
+    document.getElementById('Texto3Ver').innerHTML='';
+    document.getElementById('Texto4Ver').innerHTML='';
 
+}

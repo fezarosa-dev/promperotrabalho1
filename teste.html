@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações em Vetor</title>
+    <script type="text/javascript">
+        const vetor = [];
+
+        function incluirNoFinal() {
+            const inputNumero = document.getElementById("numero");
+            const numero = parseInt(inputNumero.value);
+            if (!isNaN(numero)) {
+                vetor.push(numero);
+                inputNumero.value = "";
+                inputNumero.focus();
+                mostrarVetor();
+            }
+        }
+
+        function incluirNaPosicao() {
+            const inputNumero = document.getElementById("numero");
+            const inputPosicao = document.getElementById("posicao");
+            const numero = parseInt(inputNumero.value);
+            const posicao = parseInt(inputPosicao.value);
+
+            if (!isNaN(numero) && !isNaN(posicao) && posicao >= 0 && posicao <= vetor.length) {
+                vetor.splice(posicao, 0, numero);
+                inputNumero.value = "";
+                inputPosicao.value = "";
+                mostrarVetor();
+            }
+        }
+
+        function removerNaPosicao() {
+            const inputPosicao = document.getElementById("posicao");
+            const posicao = parseInt(inputPosicao.value);
+
+            if (!isNaN(posicao) && posicao >= 0 && posicao < vetor.length) {
+                vetor.splice(posicao, 1);
+                inputPosicao.value = "";
+                mostrarVetor();
+            }
+        }
+
+        function calcularMediaAritmetica() {
+            if (vetor.length > 0) {
+                const soma = vetor.reduce((acc, val) => acc + val, 0);
+                const media = soma / vetor.length;
+                document.getElementById("resultado").textContent = "Média Aritmética: " + media.toFixed(2);
+            } else {
+                document.getElementById("resultado").textContent = "O vetor está vazio.";
+            }
+        }
+
+        function calcularMediaPonderada() {
+            if (vetor.length > 0) {
+                let soma = 0;
+                let Si = 0;
+
+                for (let i = 0; i < vetor.length; i++) {
+                    soma += (i + 1) * vetor[i];
+                    Si += (i + 1);
+                }
+
+                const mediaPonderada = soma / Si;
+                document.getElementById("resultado").textContent = "Média Ponderada: " + mediaPonderada.toFixed(2);
+            } else {
+                document.getElementById("resultado").textContent = "O vetor está vazio.";
+            }
+        }
+
+        function mostrarElementoNaPosicao() {
+            const inputPosicao = document.getElementById("posicao");
+            const posicao = parseInt(inputPosicao.value);
+
+            if (!isNaN(posicao) && posicao >= 0 && posicao < vetor.length) {
+                document.getElementById("resultado").textContent = "Elemento na posição " + posicao + ": " + vetor[posicao];
+            } else {
+                document.getElementById("resultado").textContent = "Posição inválida.";
+            }
+        }
+
+        function mostrarPorcentagemNoIntervalo() {
+            const inputA = document.getElementById("valorA");
+            const inputB = document.getElementById("valorB");
+            const a = parseInt(inputA.value);
+            const b = parseInt(inputB.value);
+
+            if (!isNaN(a) && !isNaN(b)) {
+                let count = 0;
+                for (let i = 0; i < vetor.length; i++) {
+                    if (vetor[i] >= a && vetor[i] <= b) {
+                        count++;
+                    }
+                }
+                const porcentagem = (count / vetor.length) * 100;
+                document.getElementById("resultado").textContent = "Porcentagem no intervalo [" + a + ", " + b + "]: " + porcentagem.toFixed(2) + "%";
+            } else {
+                document.getElementById("resultado").textContent = "Valores inválidos.";
+            }
+        }
+
+        function mostrarVetor() {
+            document.getElementById("resultado").textContent = "Vetor: [" + vetor.join(", ") + "]";
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Operações em Vetor de Inteiros</h1>
+    <input type="number" id="numero" placeholder="Número">
+    <input type="number" id="posicao" placeholder="Posição">
+    <button onclick="incluirNoFinal()">Incluir no Final</button>
+    <button onclick="incluirNaPosicao()">Incluir na Posição</button>
+    <button onclick="removerNaPosicao()">Remover na Posição</button>
+    <br>
+    <button onclick="calcularMediaAritmetica()">Calcular Média Aritmética</button>
+    <button onclick="calcularMediaPonderada()">Calcular Média Ponderada</button>
+    <button onclick="mostrarElementoNaPosicao()">Mostrar Elemento na Posição</button>
+    <br>
+    <input type="number" id="valorA" placeholder="Valor A">
+    <input type="number" id="valorB" placeholder="Valor B">
+    <button onclick="mostrarPorcentagemNoIntervalo()">Mostrar Porcentagem no Intervalo</button>
+    <br>
+    <div id="resultado"></div>
+</body>
+
+</html>
