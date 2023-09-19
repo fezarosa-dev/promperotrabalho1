@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operações com Vetor de Inteiros</title>
-</head>
-<body>
-    <h1>Operações com Vetor de Inteiros</h1>
-    <p>Clique nos botões abaixo para realizar as operações:</p>
-
-    <button onclick="incluirNoFinal()">Incluir no Final</button>
-    <button onclick="incluirEmQualquerPosicao()">Incluir em Qualquer Posição</button>
-    <button onclick="removerEmQualquerPosicao()">Remover em Qualquer Posição</button>
-    <button onclick="mediaAritmetica()">Média Aritmética</button>
-    <button onclick="mediaPonderada()">Média Ponderada</button>
-    <button onclick="mostrarElementos()">Mostrar Elementos</button>
-    <button onclick="porcentagemNoIntervalo()">Porcentagem no Intervalo</button>
-
-    <script>
         // Vetor de inteiros
         const vetor = [];
 
@@ -128,6 +108,3 @@
             const porcentagem = (elementosNoIntervalo / vetor.length) * 100;
             alert(`Porcentagem de Elementos no Intervalo [${a}, ${b}]: ${porcentagem.toFixed(2)}%`);
         }
-    </script>
-</body>
-</html>
